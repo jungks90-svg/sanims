@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>오늘의 급식</title>
+  <style>
+    body { background-color: #121212; color: #ffffff; text-align: center; font-family: Arial, sans-serif; padding: 40px; }
+    .title { font-size: 3.5rem; color: #00E676; margin-bottom: 20px; }
+    .menu { font-size: 2.2rem; line-height: 2; word-break: keep-all; }
+  </style>
+</head>
+<body>
+  <div class="title" id="date">오늘의 급식</div>
+  <div class="menu" id="meal">급식 정보를 불러오는 중...</div>
+
+  <script>
+    const API_KEY = '9a81fd7311724077a33152a780ddf196';
+    const ATPT_CODE = 'Q10';
+    const SCHUL_CODE = '8642009';
+    
+    // 오늘 날짜 구하기 (YYYYMMDD)
+    const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    document.getElementById('date').innerText = `${new Date().toLocaleDateString()} 급식`;
+
+    const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${API_KEY}&Type=json&ATPT_OFCDC_SC_CODE=${ATPT_CODE}&SD_SCHUL_CODE=${SCHUL_CODE}&MLSV_YMD=${today}`;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        const row = data.mealServiceDietInfo?.[1]?.row?.[0];
+        if (row) {
+          // 알레르기 번호 제거 및 줄바꿈 처리
+          const cleanMenu = row.DDISH_NM.replace(/\([0-9.]+\)/g, '');
+          document.getElementById('meal').innerHTML = cleanMenu;
+        } else {
+          document.getElementById('meal').innerText = '오늘의 급식 정보가 없습니다.';
+        }
+      });
+
+    // 매일 자정에 자동 새로고침 (페이지 유지용)
+    setTimeout(() => location.reload(), 3600000); 
+  </script>
+</body>
+</html>
