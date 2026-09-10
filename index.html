@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>오늘의 급식 - 인스타그램</title>
+  <title>오늘/내일 급식 - 인스타그램</title>
   <style>
-    /* TV 화면 전체에 들어맞는 파스텔톤 배경 설정 */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: #f3efe6; /* 따뜻한 파스텔 크림/베이지 배경 */
+      background-color: #f3efe6;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
       min-height: 100vh;
       display: flex;
@@ -16,19 +15,15 @@
       align-items: center;
       padding: 20px;
     }
-
-    /* 인스타그램 카드 피드 스타일 */
     .insta-card {
       width: 100%;
-      max-width: 850px; /* TV 멀리서도 잘 보이는 크기 */
+      max-width: 850px;
       background: #ffffff;
       border-radius: 24px;
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
       border: 1px solid #e2ded5;
       overflow: hidden;
     }
-
-    /* 1. 상단 프로필 헤더 */
     .card-header {
       display: flex;
       align-items: center;
@@ -56,23 +51,11 @@
       justify-content: center;
       font-size: 24px;
     }
-    .profile-info {
-      flex: 1;
-    }
-    .username {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #262626;
-    }
-    .location {
-      font-size: 0.95rem;
-      color: #8e8e8e;
-      margin-top: 2px;
-    }
-
-    /* 2. 중앙 이미지/메뉴 메인 박스 */
+    .profile-info { flex: 1; }
+    .username { font-size: 1.3rem; font-weight: 700; color: #262626; }
+    .location { font-size: 0.95rem; color: #8e8e8e; margin-top: 2px; }
     .card-body {
-      background-color: #faf7f2; /* 파스텔톤 내부 영역 */
+      background-color: #faf7f2;
       padding: 36px 40px;
       min-height: 380px;
       display: flex;
@@ -90,17 +73,10 @@
       margin-bottom: 20px;
       width: fit-content;
     }
-    .menu-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #1f1f1f;
-      margin-bottom: 24px;
-    }
-    .menu-list {
-      list-style: none;
-    }
+    .menu-title { font-size: 2.2rem; font-weight: 800; color: #1f1f1f; margin-bottom: 24px; }
+    .menu-list { list-style: none; }
     .menu-item {
-      font-size: 2rem; /* TV 가독성을 위해 큰 글씨 적용 */
+      font-size: 2rem;
       font-weight: 700;
       color: #2b2b2b;
       margin-bottom: 14px;
@@ -115,145 +91,123 @@
       margin-right: 14px;
     }
     .empty-msg {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: #757575;
       text-align: center;
       padding: 40px 0;
+      line-height: 1.6;
     }
-
-    /* 3. 하단 아이콘 및 캡션(좋아요, 태그) */
-    .card-footer {
-      padding: 20px 28px 28px 28px;
-    }
-    .action-icons {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-    .left-icons {
-      display: flex;
-      gap: 18px;
-    }
-    .icon {
-      width: 28px;
-      height: 28px;
-      cursor: pointer;
-    }
-    .likes {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #262626;
-      margin-bottom: 10px;
-    }
-    .caption {
-      font-size: 1.1rem;
-      color: #262626;
-      line-height: 1.5;
-    }
-    .hashtags {
-      color: #00376b;
-      font-weight: 600;
-      margin-top: 6px;
-    }
+    .card-footer { padding: 20px 28px 28px 28px; }
+    .action-icons { display: flex; justify-content: space-between; margin-bottom: 16px; }
+    .left-icons { display: flex; gap: 18px; }
+    .icon { width: 28px; height: 28px; }
+    .likes { font-size: 1.1rem; font-weight: 700; color: #262626; margin-bottom: 10px; }
+    .caption { font-size: 1.1rem; color: #262626; line-height: 1.5; }
+    .hashtags { color: #00376b; font-weight: 600; margin-top: 6px; }
   </style>
 </head>
 <body>
 
   <div class="insta-card">
-    <!-- 프로필 헤더 -->
     <div class="card-header">
-      <div class="profile-img-ring">
-        <div class="profile-img">🏫</div>
-      </div>
+      <div class="profile-img-ring"><div class="profile-img">🏫</div></div>
       <div class="profile-info">
-        <div class="username">happy_middle_school</div>
+        <div class="username">sani_middle_school</div>
         <div class="location">오늘의 학교 급식실</div>
       </div>
     </div>
 
-    <!-- 메인 급식 메뉴 영역 -->
     <div class="card-body">
-      <div class="date-badge" id="dateBadge">오늘의 날짜</div>
-      <div class="menu-title">오늘의 급식 메뉴 🍚🍗</div>
+      <div class="date-badge" id="dateBadge">날짜 불러오는 중...</div>
+      <div class="menu-title" id="menuTitle">급식 메뉴 🍚🍗</div>
       <ul class="menu-list" id="menuList">
         <li class="empty-msg">급식 정보를 불러오는 중입니다...</li>
       </ul>
     </div>
 
-    <!-- 반응 버튼 및 캡션 -->
     <div class="card-footer">
       <div class="action-icons">
         <div class="left-icons">
-          <!-- 빨간 하트 아이콘 -->
           <svg class="icon" viewBox="0 0 24 24" fill="#ed4956"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          <!-- 댓글 아이콘 -->
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          <!-- 공유 아이콘 -->
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </div>
-        <!-- 북마크 아이콘 -->
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
       </div>
       <div class="likes">좋아요 314개</div>
       <div class="caption">
-        <strong>sani_middle_school</strong> 오늘 점심도 맛있게 먹고 힘내세요! 😋✨
+        <strong>sani_middle_school</strong> 오늘/내일 메뉴도 맛있게 먹고 힘내세요! 😋✨
         <div class="hashtags">#급식스타그램 #학교급식 #맛점 #오늘의메뉴</div>
       </div>
     </div>
   </div>
 
   <script>
-    // 1. 설정 변수
-    const ATPT_CODE = 'Q10';       // 전라남도교육청 코드
-    const SCHUL_CODE = '8642009';   // 입력해주신 학교코드
-    const API_KEY = '9a81fd7311724077a33152a780ddf196';       // 기본 조회용 (필요 시 개인 KEY 입력 가능)
+    var ATPT_CODE = 'Q10';
+    var SCHUL_CODE = '8642009';
+    var API_KEY = '9a81fd7311724077a33152a780ddf196'; // 발급받으신 정식 API KEY를 입력하세요
 
-    // 2. 오늘 날짜 및 요일 표시 (YYYY.MM.DD)
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
-    const dayName = daysOfWeek[now.getDay()];
+    var targetDate = new Date();
+    // 현재 시각이 오후 3시(15시) 이상인지 확인
+    var isAfter3PM = targetDate.getHours() >= 15;
 
-    const ymdParam = `${year}${month}${day}`; // YYYYMMDD 포맷
-    document.getElementById('dateBadge').innerText = `${year}. ${month}. ${day}. (${dayName})`;
+    // 오후 3시 이후면 날짜를 하루 뒤(내일)로 설정
+    if (isAfter3PM) {
+      targetDate.setDate(targetDate.getDate() + 1);
+    }
 
-    // 3. 나이스 오픈 API 호출
-    const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${API_KEY}&Type=json&ATPT_OFCDC_SC_CODE=${ATPT_CODE}&SD_SCHUL_CODE=${SCHUL_CODE}&MLSV_YMD=${ymdParam}`;
+    var year = targetDate.getFullYear();
+    var month = String(targetDate.getMonth() + 1).padStart(2, '0');
+    var day = String(targetDate.getDate()).padStart(2, '0');
+    var daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+    var dayName = daysOfWeek[targetDate.getDay()];
+
+    // 상단 타이틀 및 배지 문구 변경
+    var titleText = isAfter3PM ? "내일의 급식 메뉴 🍚🍗" : "오늘의 급식 메뉴 🍚🍗";
+    var badgeText = (isAfter3PM ? "내일 " : "오늘 ") + year + '. ' + month + '. ' + day + '. (' + dayName + ')';
+    
+    document.getElementById('menuTitle').innerText = titleText;
+    document.getElementById('dateBadge').innerText = badgeText;
+
+    var ymdParam = year + month + day;
+    var url = 'https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=' + API_KEY + '&Type=json&ATPT_OFCDC_SC_CODE=' + ATPT_CODE + '&SD_SCHUL_CODE=' + SCHUL_CODE + '&MLSV_YMD=' + ymdParam;
 
     fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        const menuListEl = document.getElementById('menuList');
-        menuListEl.innerHTML = '';
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        var menuListEl = document.getElementById('menuList');
 
-        const row = data.mealServiceDietInfo?.[1]?.row?.[0];
+        if (data.RESULT) {
+          menuListEl.innerHTML = '<li class="empty-msg">API 오류: ' + data.RESULT.MESSAGE + '</li>';
+          return;
+        }
 
-        if (row && row.DDISH_NM) {
-          // 급식 데이터 정리 (알레르기 번호 제거 및 메뉴 분리)
-          const rawItems = row.DDISH_NM.split('<br/>');
-          
-          rawItems.forEach(item => {
-            // 알레르기 숫자 및 괄호 지우기 (예: 닭강정1.5.6. -> 닭강정)
-            const cleanItem = item.replace(/[0-9.()]/g, '').trim();
-            if (cleanItem) {
-              const li = document.createElement('li');
-              li.className = 'menu-item';
-              li.innerText = cleanItem;
-              menuListEl.appendChild(li);
+        if (data.mealServiceDietInfo && data.mealServiceDietInfo[1] && data.mealServiceDietInfo[1].row) {
+          var row = data.mealServiceDietInfo[1].row[0];
+          if (row && row.DDISH_NM) {
+            menuListEl.innerHTML = '';
+            var rawItems = row.DDISH_NM.split('<br/>');
+            for (var i = 0; i < rawItems.length; i++) {
+              var cleanItem = rawItems[i].replace(/[0-9.()]/g, '').trim();
+              if (cleanItem) {
+                var li = document.createElement('li');
+                li.className = 'menu-item';
+                li.innerText = cleanItem;
+                menuListEl.appendChild(li);
+              }
             }
-          });
+          }
         } else {
-          menuListEl.innerHTML = '<li class="empty-msg">오늘은 급식 정보가 없습니다. 🍃</li>';
+          var dayTypeStr = isAfter3PM ? "내일" : "오늘";
+          menuListEl.innerHTML = '<li class="empty-msg">' + dayTypeStr + '(' + month + '/' + day + ')은 급식 정보가 없습니다. 🍃</li>';
         }
       })
-      .catch(err => {
-        document.getElementById('menuList').innerHTML = '<li class="empty-msg">급식 정보를 불러오는데 실패했습니다.</li>';
+      .catch(function(err) {
+        document.getElementById('menuList').innerHTML = '<li class="empty-msg">연결 실패: 인터넷 상태를 확인해 주세요.</li>';
       });
 
-    // 4. TV 켜둠 상태 유지용 (1시간마다 자동 새로고침)
-    setTimeout(() => location.reload(), 3600000);
+    // 20분마다 화면 자동 새로고침 (오후 3시에 맞춰 정밀 전환되도록 주기 단축)
+    setTimeout(function() { location.reload(); }, 1200000);
   </script>
 </body>
 </html>
